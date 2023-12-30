@@ -2,12 +2,13 @@ from rest_framework.viewsets import ModelViewSet
 
 from .models import Post, Tag
 from .serializers import PostSerializer, PostsSerializer, CreatePostSerializer, TagSerializer, TagsSerializer
-from .permissions import PostAuthenticatedUpdateOwner
+from .permissions import IsAuth, IsOwner
 
 
 class PostView(ModelViewSet):
     permission_classes = [
-        PostAuthenticatedUpdateOwner
+        IsOwner,
+        IsAuth
     ]
 
     def get_queryset(self):
